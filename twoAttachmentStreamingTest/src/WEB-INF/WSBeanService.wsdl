@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="WSBeanService" targetNamespace="http://server.streamreceiving.mtom.demo/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://server.streamreceiving.mtom.demo/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://server.streamreceiving.mtom.demo/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://server.streamreceiving.mtom.demo/">
+<xs:element name="echo" type="tns:echo"/>
+<xs:element name="echoResponse" type="tns:echoResponse"/>
+<xs:element name="feedMe" type="tns:feedMe"/>
+<xs:element name="feedMeResponse" type="tns:feedMeResponse"/>
+<xs:complexType name="echo">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="echoResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="feedMe">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:bigDataRequest"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="bigDataRequest">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element xmlns:ns1="http://www.w3.org/2005/05/xmlmime" minOccurs="0" name="bigblob1" ns1:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+<xs:element xmlns:ns2="http://www.w3.org/2005/05/xmlmime" minOccurs="0" name="bigblob2" ns2:expectedContentTypes="application/octet-stream" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="feedMeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="IOException" type="tns:IOException"/>
+<xs:complexType name="IOException">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="echoResponse">
+    <wsdl:part name="parameters" element="tns:echoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="echo">
+    <wsdl:part name="parameters" element="tns:echo">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="feedMeResponse">
+    <wsdl:part name="parameters" element="tns:feedMeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IOException">
+    <wsdl:part name="IOException" element="tns:IOException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="feedMe">
+    <wsdl:part name="parameters" element="tns:feedMe">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Blobconsumer">
+    <wsdl:operation name="echo">
+      <wsdl:input name="echo" message="tns:echo">
+    </wsdl:input>
+      <wsdl:output name="echoResponse" message="tns:echoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="feedMe">
+      <wsdl:input name="feedMe" message="tns:feedMe">
+    </wsdl:input>
+      <wsdl:output name="feedMeResponse" message="tns:feedMeResponse">
+    </wsdl:output>
+      <wsdl:fault name="IOException" message="tns:IOException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSBeanServiceSoapBinding" type="tns:Blobconsumer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="echo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="echo">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="echoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="feedMe">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="feedMe">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="feedMeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSBeanService">
+    <wsdl:port name="BlobconsumerPort" binding="tns:WSBeanServiceSoapBinding">
+      <soap:address location="http://localhost:9090/BlobconsumerPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
