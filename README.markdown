@@ -77,4 +77,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Author: [mailto:andreas.krueger@innoQ.com](Andreas Kr&uuml;ger)
+Author: Andreas Kr&uuml;ger
