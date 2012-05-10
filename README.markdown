@@ -1,4 +1,4 @@
-This demonstrates a regression in MTOM streaming in Apache CXF.
+This demonstrates a regression in MTOM streaming in Apache CXF, recently fixed.
 
 ## What you run
 
@@ -47,6 +47,12 @@ _Outcome seen: Same as plain JDK 6._
 
 This is a regression, CXF 2.6.0 no longer does MTOM streaming properly.
 
+### CXF version 2.6.1
+
+* Fixed according to [https://issues.apache.org/jira/browse/CXF-4298]
+* TODO: Retest.
+
+(Apache fixes considerably faster than I can find the time to retest! Wow!)
 
 ### For the record
 

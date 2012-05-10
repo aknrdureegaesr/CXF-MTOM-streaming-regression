@@ -155,8 +155,12 @@ public class Driver {
         
         // Activate streaming on the client side,
         // so it is not the client that stores the attachments before sending.
-        // In the author's experience, this always works:
+        // In the author's experience, this always works, irregardless of WS stack used:
         @SuppressWarnings("restriction")
+        // If you see an error in Eclipse here:
+        // Navigate Window / Preferences / Java / Compiler/ Errors/Warnings /
+        // Deprecated and restricted API / Forbidden reference (access rules):
+        // and change from "Error" to "Warning".
         String doChunking = com.sun.xml.internal.ws.developer.JAXWSProperties.HTTP_CLIENT_STREAMING_CHUNK_SIZE;
         ((BindingProvider) port).getRequestContext().put(doChunking, 4096);
     }
